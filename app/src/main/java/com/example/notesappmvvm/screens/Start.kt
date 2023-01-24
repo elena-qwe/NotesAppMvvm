@@ -70,7 +70,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                             LOGIN = login
                             PASSWORD = password
                             viewModel.initDatabase(TYPE_FIREBASE) {
-                                Log.d("checkData", "Authh success")
+                                navController.navigate(NavRoute.Main.route)
                             }
                         },
                         enabled = login.isNotEmpty() && password.isNotEmpty()
@@ -108,7 +108,6 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                         coroutineScope.launch {
                             bottomSheetState.show()
                         }
-
                     },
                     modifier = Modifier
                         .width(200.dp)
@@ -120,6 +119,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun prevStartScreen() {

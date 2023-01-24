@@ -10,13 +10,16 @@ import com.example.notesappmvvm.utils.Constants.Keys.NOTE_DATABASE
 
 
 @Database(entities = [Note::class], version = 1)
-abstract class AppRoomDatabase : RoomDatabase() {
+abstract class AppRoomDatabase  : RoomDatabase(){
 
-    abstract fun getRoomDao(): NoteRoomDao
+    abstract fun  getRoomDao(): NoteRoomDao
 
     companion object {
-        private var INSTANCE: AppRoomDatabase?=null
-        fun getInstance(context: Context) : AppRoomDatabase {
+
+        @Volatile
+        private var INSTANCE: AppRoomDatabase? = null
+
+        fun getInstance(context: Context) :AppRoomDatabase {
             return if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
                     context,
@@ -26,5 +29,6 @@ abstract class AppRoomDatabase : RoomDatabase() {
                 INSTANCE as AppRoomDatabase
             } else INSTANCE as AppRoomDatabase
         }
+
     }
 }
